@@ -1,0 +1,470 @@
+/* ===== BookHive Enhanced Global Styles ===== */
+
+/* CSS Variables - Rich Book Theme */
+:root {
+  /* Warm, literary color palette */
+  --bh-bg: linear-gradient(135deg, #fdfbf7 0%, #f5f1e8 100%);
+  --bh-surface: #ffffff;
+  --bh-text: #2c1810;
+  --bh-muted: #8b7355;
+  --bh-primary: #8b4513;        /* Saddle brown - rich leather */
+  --bh-primary-light: #a0522d;
+  --bh-primary-contrast: #ffffff;
+  --bh-accent: #d4af37;         /* Gold - classic book gilding */
+  --bh-accent-light: #f0d98c;
+  --bh-border: #e8dcc8;
+  --bh-success: #2d5016;
+  --bh-danger: #8b2635;
+  --bh-warning: #cd853f;
+  
+  /* Advanced shadows for depth */
+  --bh-shadow-sm: 0 2px 4px rgba(44,24,16,0.04);
+  --bh-shadow: 0 4px 12px rgba(44,24,16,0.08), 0 2px 4px rgba(44,24,16,0.04);
+  --bh-shadow-lg: 0 10px 40px rgba(44,24,16,0.12), 0 4px 8px rgba(44,24,16,0.06);
+  --bh-shadow-book: 
+    4px 0 8px rgba(139,69,19,0.1),
+    0 4px 12px rgba(44,24,16,0.08);
+  
+  /* Textures and effects */
+  --bh-texture-paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Base */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bh-bg);
+  background-attachment: fixed;
+  color: var(--bh-text);
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bh-texture-paper);
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--bh-text);
+  letter-spacing: 0.3px;
+  font-weight: 700;
+  position: relative;
+}
+
+h1 {
+  background: linear-gradient(135deg, var(--bh-primary) 0%, var(--bh-primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lead { 
+  color: var(--bh-muted);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+/* Cards - Book-inspired design */
+.card {
+  border: 0 !important;
+  background: var(--bh-surface);
+  box-shadow: var(--bh-shadow-book);
+  border-radius: 16px !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 4px solid var(--bh-accent) !important;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    var(--bh-accent) 0%, 
+    transparent 50%, 
+    var(--bh-accent) 100%);
+  opacity: 0.3;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    6px 0 12px rgba(139,69,19,0.15),
+    0 8px 24px rgba(44,24,16,0.12);
+}
+
+.card .card-title { 
+  margin-bottom: 0.75rem;
+  color: var(--bh-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card .card-title::before {
+  content: '📖';
+  font-size: 1.25em;
+  filter: grayscale(0.3);
+}
+
+.card-body {
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons - Premium book-style */
+.btn {
+  border-radius: 12px !important;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--bh-primary) 0%, var(--bh-primary-light) 100%);
+  border: 2px solid var(--bh-primary);
+  box-shadow: 0 4px 12px rgba(139,69,19,0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139,69,19,0.3);
+  border-color: var(--bh-primary-light);
+}
+
+.btn-outline-primary {
+  color: var(--bh-primary);
+  border: 2px solid var(--bh-primary);
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: var(--bh-primary);
+  color: var(--bh-primary-contrast);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139,69,19,0.2);
+}
+
+/* Navbar - Library header feel */
+.navbar {
+  background: var(--bh-surface) !important;
+  box-shadow: var(--bh-shadow);
+  backdrop-filter: blur(10px);
+  border-bottom: 3px solid var(--bh-accent);
+  position: relative;
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--bh-accent-light) 50%, 
+    transparent 100%);
+}
+
+.navbar-brand {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--bh-primary) 0%, var(--bh-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-brand::before {
+  content: '📚';
+  -webkit-text-fill-color: initial;
+  font-size: 1.75rem;
+  filter: drop-shadow(2px 2px 4px rgba(139,69,19,0.2));
+}
+
+.nav-link {
+  color: var(--bh-text) !important;
+  opacity: 0.75;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--bh-accent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+  width: 80%;
+}
+
+.nav-link.active, 
+.nav-link:hover {
+  opacity: 1;
+  color: var(--bh-primary) !important;
+}
+
+/* Tables - Classic ledger style */
+.table > :not(caption) > * > * {
+  background: transparent;
+  padding: 1rem 0.75rem;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table thead th {
+  color: var(--bh-primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--bh-accent) !important;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  background: linear-gradient(180deg, rgba(212,175,55,0.05) 0%, transparent 100%);
+}
+
+.table tbody tr {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--bh-border);
+}
+
+.table tbody tr:hover {
+  background: rgba(212,175,55,0.05);
+  transform: scale(1.01);
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* Badges - Book labels */
+.badge {
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.5em 0.85em;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  box-shadow: var(--bh-shadow-sm);
+}
+
+.badge-primary {
+  background: linear-gradient(135deg, var(--bh-primary) 0%, var(--bh-primary-light) 100%);
+}
+
+.badge-success {
+  background: var(--bh-success);
+}
+
+.badge-warning {
+  background: var(--bh-warning);
+}
+
+.badge-danger {
+  background: var(--bh-danger);
+}
+
+/* Forms - Elegant input fields */
+.form-control, .form-select {
+  border-radius: 12px;
+  border: 2px solid var(--bh-border);
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  background: var(--bh-surface);
+  font-size: 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--bh-accent);
+  box-shadow: 0 0 0 0.25rem rgba(212,175,55,0.15),
+              0 4px 12px rgba(139,69,19,0.08);
+  transform: translateY(-1px);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--bh-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+}
+
+/* Utility */
+.shadow-soft { 
+  box-shadow: var(--bh-shadow);
+}
+
+.shadow-book {
+  box-shadow: var(--bh-shadow-book);
+}
+
+/* Container */
+.container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Page transitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card, .table, .btn {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bh-border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--bh-primary) 0%, var(--bh-primary-light) 100%);
+  border-radius: 10px;
+  border: 2px solid var(--bh-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bh-primary-light);
+}
+
+/* Book spine decoration for sidebars */
+.sidebar, .list-group {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, 
+    var(--bh-accent) 0%, 
+    var(--bh-primary) 50%, 
+    var(--bh-accent) 100%);
+  border-radius: 2px;
+}
+
+/* List groups - Chapter list style */
+.list-group-item {
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  background: var(--bh-surface);
+  border-color: var(--bh-border) !important;
+}
+
+.list-group-item:hover,
+.list-group-item.active {
+  border-left-color: var(--bh-accent) !important;
+  background: rgba(212,175,55,0.05);
+  transform: translateX(4px);
+}
+
+/* Alert boxes - Bookmark style */
+.alert {
+  border-radius: 12px;
+  border-left: 4px solid;
+  box-shadow: var(--bh-shadow);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.alert-info {
+  border-left-color: var(--bh-primary);
+  background: rgba(139,69,19,0.05);
+}
+
+.alert-success {
+  border-left-color: var(--bh-success);
+  background: rgba(45,80,22,0.05);
+}
+
+.alert-warning {
+  border-left-color: var(--bh-warning);
+  background: rgba(205,133,63,0.05);
+}
+
+.alert-danger {
+  border-left-color: var(--bh-danger);
+  background: rgba(139,38,53,0.05);
+}

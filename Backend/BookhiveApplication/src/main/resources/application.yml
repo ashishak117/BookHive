@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/bookhive?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: ashishsql
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  # 👇 Force Hibernate to use your exact Java field names as column names (no snake_case conversion)
+
+
+app:
+  jwt:
+    secret: "$2a$12$o3Wo7tbJfR8Id8pQFhG7geqEWmr4jt/Zjq0rO5CeGLnRH5bk72q36"
+    expiryMinutes: 1440
+
+# CORS: open for Angular dev
+cors:
+  allowed-origins: "http://localhost:4200"
